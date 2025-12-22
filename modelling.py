@@ -1,15 +1,25 @@
 import pandas as pd
 import mlflow
 import mlflow.sklearn
-
+import os
+import dagshub
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment("Airline Passenger Satisfaction - Basic")
+# --- PERBAIKAN UNTUK CI & DAGSHUB ---
+# Gunakan environment variables agar kredensial aman di GitHub Secrets
+dagshub_url = "https://dagshub.com/GaryFaldi/Membangun_model.mlflow"
 
-df = pd.read_csv("Airline Passenger Satisfaction_Cleaned/train_cleaned.csv")
+# Inisialisasi DagsHub agar GitHub Actions bisa login otomatis
+dagshub.init(repo_owner='GaryFaldi', repo_name='Membangun_model', mlflow=True)
+
+mlflow.set_tracking_uri(dagshub_url)
+mlflow.set_experiment("Airline Passenger Satisfaction - CI")
+
+# Sesuaikan path dataset karena nanti di folder MLProject
+# Pastikan file CSV ada di dalam folder MLProject
+df = pd.read_csv("Airline Passenger Satisfaction_Cleaned/train_cleaned.csv") 
 
 X = df.drop("satisfaction", axis=1)
 y = df["satisfaction"]

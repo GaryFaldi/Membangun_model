@@ -50,4 +50,4 @@ with mlflow.start_run():
     # 4. Log Model Folder
     mlflow.sklearn.log_model(sk_model=best_model, artifact_path="model")
 
-    print(f"Model Tunning Berhasil. Accuracy: {acc}")
+    print(f"Accuracy: {acc}")
