@@ -1,0 +1,3 @@
+Pada tahap ini saya menerapkan kriteria Advanced dengan menggunakan manual logging pada MLflow Tracking UI yang disimpan di DagsHub. Oleh karena itu, struktur artefak yang dihasilkan tidak sepenuhnya sama dengan contoh autolog murni.
+
+Model yang digunakan adalah RandomForestClassifier dengan GridSearchCV. Algoritma ini tidak memiliki konsep epoch sehingga training_history.png tidak tersedia. Proses dan hasil pelatihan ditunjukkan melalui cv_results.csv serta visualisasi evaluasi seperti confusion matrix, ROC curve, dan precision–recall curve.
